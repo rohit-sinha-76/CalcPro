@@ -1,0 +1,256 @@
+/* basic page setup */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif; /* love Poppins, looks sleek */
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    transition: background 0.5s ease;
+    overflow: auto; /* just in case history gets long */
+}
+
+/* calculator container */
+.calculator {
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 25px;
+    padding: 30px;
+    width: 360px; /* feels like a good width */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* header stuff */
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+.header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #222;
+    font-weight: 700;
+    letter-spacing: 1px; /* little spacing makes it pop */
+}
+.header p {
+    margin: 8px 0 15px;
+    font-size: 15px;
+    color: #777;
+}
+.mode-toggle button {
+    background: #74ebd5;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background .3s ease;
+}
+.mode-toggle button:hover {
+    background: #66d9c8;
+}
+
+/* display area */
+.display {
+    margin-bottom: 20px;
+}
+#result {
+    width: 100%;
+    height: 70px;
+    font-size: 32px;
+    text-align: right;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    background: #f8f9fa;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace; /* looks calculator-y */
+}
+#result:focus {
+    outline: none;
+    background: #fff;
+}
+
+/* buttons layout */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    transition: all .3s ease;
+}
+button {
+    padding: 20px;
+    font-size: 22px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    background: #e9ecef;
+    transition: transform .1s ease, background .2s ease, box-shadow .2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+button:hover {
+    background: #dee2e6;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+button:active {
+    transform: scale(0.92);
+}
+.operator {
+    background: #74ebd5;
+    color: #fff;
+}
+.operator:hover {
+    background: #66d9c8;
+}
+.equals {
+    background: #acb6e5;
+    color: white;
+    grid-column: span 2; /* make it wide */
+}
+.equals:hover {
+    background: #9aa8e0;
+}
+.sci-btn {
+    display: none; /* hide these until scientific mode */
+    background: #f1c40f;
+    color: white;
+}
+.sci-btn:hover {
+    background: #e2b70d;
+}
+.scientific-mode .sci-btn {
+    display: block;
+}
+.scientific-mode {
+    grid-template-columns: repeat(5, 1fr); /* expand for sci buttons */
+}
+
+/* history section */
+.history {
+    margin-top: 25px;
+    max-height: 180px;
+    overflow-y: auto;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 15px;
+    opacity: 0;
+    max-height: 0;
+    transition: all .4s ease;
+}
+.history.active {
+    opacity: 1;
+    max-height: 180px;
+}
+.history h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.clear-history {
+    font-size: 12px;
+    color: #ff6b6b;
+    cursor: pointer;
+    transition: color .2s ease;
+}
+.clear-history:hover {
+    color: #e63946;
+}
+#history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+#history-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    animation: fadeInItem .3s ease;
+}
+@keyframes fadeInItem {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* theme switcher */
+.theme-switcher {
+    margin-top: 25px;
+    text-align: center;
+}
+.theme-switcher button {
+    background: #74ebd5;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 20px;
+    transition: background .3s ease;
+}
+.theme-switcher button:hover {
+    background: #66d9c8;
+}
+
+/* dark theme styles */
+body.dark-theme {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+body.dark-theme .calculator {
+    background: rgba(30,30,30,0.97);
+    color: #f5f5f5;
+}
+body.dark-theme .header h1 {
+    color: #f5f5f5;
+}
+body.dark-theme .header p {
+    color: #bbb;
+}
+body.dark-theme #result {
+    background: #2c2c2c;
+    color: #f5f5f5;
+}
+body.dark-theme button {
+    background: #444;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+body.dark-theme button:hover {
+    background: #555;
+}
+body.dark-theme .operator {
+    background: #2a5298;
+}
+body.dark-theme .operator:hover {
+    background: #224478;
+}
+body.dark-theme .equals {
+    background: #1e3c72;
+}
+body.dark-theme .equals:hover {
+    background: #162c56;
+}
+body.dark-theme .sci-btn {
+    background: #d35400;
+}
+body.dark-theme .sci-btn:hover {
+    background: #b84500;
+}
+body.dark-theme .history {
+    border-top-color: #555;
+}
+body.dark-theme #history-list {
+    color: #ccc;
+}
+body.dark-theme .clear-history {
+    color: #ff8787;
+}
+body.dark-theme .clear-history:hover {
+    color: #ff5555;
+}

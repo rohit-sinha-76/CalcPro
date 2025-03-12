@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcPro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="header">
+            <h1>CalcPro</h1>
+            <p>Advanced calculator with standard & scientific modes, history tracking, and cool themes.</p>
+            <div class="mode-toggle">
+                <button id="mode-btn" onclick="toggleMode()">Scientific Mode: Off</button>
+            </div>
+        </div>
+
+        <div class="display">
+            <input type="text" id="result" readonly placeholder="0">
+        </div>
+
+        <div class="history" id="history">
+            <h3>History <span onclick="clearHistory()" class="clear-history">Clear</span></h3>
+            <ul id="history-list"></ul>
+        </div>
+
+        <div class="buttons" id="buttons">
+            <button class="operator" onclick="appendToDisplay('(')">(</button>
+            <button class="operator" onclick="appendToDisplay(')')">)</button>
+            <button class="operator" onclick="clearDisplay()">C</button>
+            <button class="operator" onclick="appendToDisplay('/')">÷</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button class="operator" onclick="appendToDisplay('*')">×</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button class="operator" onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button class="operator" onclick="appendToDisplay('+')">+</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button class="equals" onclick="calculate()">=</button>
+            <!-- scientific buttons, hidden by default -->
+            <button class="sci-btn" onclick="appendToDisplay('sin(')">sin</button>
+            <button class="sci-btn" onclick="appendToDisplay('cos(')">cos</button>
+            <button class="sci-btn" onclick="appendToDisplay('tan(')">tan</button>
+            <button class="sci-btn" onclick="appendToDisplay('sqrt(')">√</button>
+            <button class="sci-btn" onclick="appendToDisplay('^')">^</button>
+            <button class="sci-btn" onclick="appendToDisplay('ln(')">ln</button>
+        </div>
+
+        <div class="theme-switcher">
+            <button onclick="toggleTheme()">Toggle Theme</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
